@@ -12,9 +12,14 @@ $("#login-form").submit(function(e) {
             localStorage.setItem('token', token)
         }
     });
-    $('#modal_trigger').html(`Sign Out`)
+    $('#signInOut').html(`<a href="#signOut" onclick="signOut()">Sign Out</a>`)
 });
 
+function signOut(){
+    console.log('đã vào Sign Out')
+    localStorage.removeItem('token')
+    $('#signInOut').html(`<a id="modal_trigger" href="#modal" class="sign-in-up">Sign In/Up</a>`)
+    console.log('Out xong')}
 $("#register-form").submit(function(e) {
     console.log('đã vào')
     e.preventDefault(); // ngăn chặn submit form
