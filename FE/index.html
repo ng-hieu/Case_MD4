@@ -3,16 +3,29 @@
 
 <head>
     <style>
-        .imgContainer{
+        .imgContainer {
             display: flex;
             flex-wrap: wrap;
         }
+
         .sizeImg {
             width: 300px;
             height: 400px;
             object-fit: cover;
             object-position: center;
             margin: 10px;
+        }
+
+        .searchBtn {
+            border-radius: 5px;
+            border: 1px solid #FE1175FF;
+            color: #fa4482;
+            background-color: white;
+        }
+
+        .searchBtn:hover {
+            background-color: #FE1175FF;
+            color: white;
         }
     </style>
     <meta charset="utf-8">
@@ -63,20 +76,18 @@
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                        <li><a href="index.html" class="active"><i class="fa fa-house" style="font-size: 20px"></i></a>
-                        </li>
-                        <li class="has-sub">
-                            <a href="javascript:void(0)"><i class="fa-solid fa-images" style="font-size: 20px"></i></a>
-                            <ul class="sub-menu">
-                                <li><a href="contests.html">Contests</a></li>
-                                <li><a href="contest-details.html">Single Contest</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="categories.html"><i class="fas fa-grip-horizontal" style="font-size: 20px"></i></a>
-                        </li>
-                        <li><a href="users.html"><i class="fa fa-user" style="font-size: 20px"></i></a></li>
-                    </ul>
+                    <div class="nav">
+                        <form action="/search" method="get"
+                              style="width: 362px; font-size: 22px;margin-bottom: auto;margin-top: auto;">
+                            <input type="text" placeholder="Search" name="searchProduct"
+                                   style="border-radius: 5px; border: 1px solid #FE1175FF; color: #fa4482">
+                            <button type="button" class="searchBtn">Search</button>
+                        </form>
+                        <a href="#" style="margin-left: auto;"><i class="fas fa-shopping-cart"
+                           style="font-size: 27px; color: #FE1175FF;margin-bottom: auto;margin-top: auto;padding-top: 23px;"></i></a>
+                        <a href="#" style="margin-left: auto;"><i class="fas fa-user"
+                                       style="font-size: 27px; color: #FE1175FF;margin-bottom: auto;margin-top: auto;padding-top: 23px;"></i></a>
+                    </div>
                     <div class="border-button" id="signInOut">
                         <a id="modal_trigger" href="#modal" class="sign-in-up">Sign In/Up</a>
                     </div>
@@ -268,7 +279,7 @@
                             </div>
                             <div class="hover-effect">
                                 <div class="content">
-                                    <h4>kem nền </h4>
+                                    <h4>Kem nền </h4>
                                     <ul>
                                         <li><span>giá:</span> 95$</li>
                                         <li><span>thành phần:</span> cocain</li>
@@ -381,7 +392,7 @@
 
 
 <section class="popular-categories">
-    <div class="container-fluid" id="picSex">
+    <div class="container-fluid" id="productImg">
         <!--       Ajax-->
     </div>
 </section>
@@ -391,8 +402,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-heading text-center">
-                    <h6>Closed Photography Contests</h6>
-                    <h4><em>Previous Contests</em> With Handpicked <em>Winners</em></h4>
+                    <h4><em><u>Co Founder</u></em></h4>
                 </div>
             </div>
             <div class="col-lg-12">
@@ -400,17 +410,15 @@
                     <div class="item">
                         <div class="closed-item">
                             <div class="thumb">
-                                <img src="assets/images/closed-01.jpg" alt="">
-                                <span class="winner"><em>Winner:</em> Anthony Soft</span>
-                                <span class="price"><em>Award :</em> $1,600</span>
+                                <div class="imgContainer">
+                                    <img src="https://ca.slack-edge.com/T03547N0JCC-U04G9ME8KUP-8108c93f1323-512"
+                                         alt="" class="sizeImg">
+                                </div>
                             </div>
                             <div class="down-content">
                                 <div class="row">
                                     <div class="col-7">
-                                        <h4>88 Participants <br><span>Number Of Artists</span></h4>
-                                    </div>
-                                    <div class="col-5">
-                                        <h4 class="pics">320 Pictures <br><span>Submited Pics</span></h4>
+                                        <h4>Nguyễn Đình Cương<br><span>26 tuổi</span></h4>
                                     </div>
                                 </div>
                             </div>
@@ -419,17 +427,14 @@
                     <div class="item">
                         <div class="closed-item">
                             <div class="thumb">
-                                <img src="assets/images/closed-02.jpg" alt="">
-                                <span class="winner"><em>Winner:</em> Anthony Soft</span>
-                                <span class="price"><em>Award :</em> $4,200</span>
+                                <div class="imgContainer">
+                                    <img src="./assets/images/LogoIru.png" alt="" class="sizeImg">
+                                </div>
                             </div>
                             <div class="down-content">
                                 <div class="row">
                                     <div class="col-7">
-                                        <h4>96 Participants <br><span>Number Of Artists</span></h4>
-                                    </div>
-                                    <div class="col-5">
-                                        <h4 class="pics">410 Pictures <br><span>Submited Pics</span></h4>
+                                        <h4>Nguyễn Trung Hiếu<br><span>22 tuổi</span></h4>
                                     </div>
                                 </div>
                             </div>
@@ -438,27 +443,19 @@
                     <div class="item">
                         <div class="closed-item">
                             <div class="thumb">
-                                <img src="assets/images/closed-03.jpg" alt="">
-                                <span class="winner"><em>Winner:</em> Anthony Soft</span>
-                                <span class="price"><em>Award :</em> $3,200</span>
+                                <div class="imgContainer">
+                                    <img src="./assets/images/pinkD.jpg" alt="" class="sizeImg">
+                                </div>
                             </div>
                             <div class="down-content">
                                 <div class="row">
                                     <div class="col-7">
-                                        <h4>74 Participants <br><span>Number Of Artists</span></h4>
-                                    </div>
-                                    <div class="col-5">
-                                        <h4 class="pics">284 Pictures <br><span>Submited Pics</span></h4>
+                                        <h4>Trần Việt Hùng<br><span>19 tuổi</span></h4>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="border-button text-center">
-                    <a href="contests.html">Browse Open Contests</a>
                 </div>
             </div>
         </div>
