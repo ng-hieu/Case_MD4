@@ -17,7 +17,6 @@ class UserController {
         }
     }
     registerUser = async (req: Request, res: Response) => {
-
         try {
             let user = req.body
             let userCheck = await this.userService.checkUserRegister(req.body)
