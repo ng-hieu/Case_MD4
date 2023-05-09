@@ -4,4 +4,4 @@ import  {productRouter} from "./product-router";
 
 export const  router = Router()
 router.use('/auth',userRouter)
-router.use('/admin',productRouter)
+router.use('/products',productRouter)

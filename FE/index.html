@@ -84,9 +84,9 @@
                             <button type="button" class="searchBtn">Search</button>
                         </form>
                         <a href="#" style="margin-left: auto;"><i class="fas fa-shopping-cart"
-                           style="font-size: 27px; color: #FE1175FF;margin-bottom: auto;margin-top: auto;padding-top: 23px;"></i></a>
+                                                                  style="font-size: 27px; color: #FE1175FF;margin-bottom: auto;margin-top: auto;padding-top: 23px;"></i></a>
                         <a href="#" style="margin-left: auto;"><i class="fas fa-user"
-                                       style="font-size: 27px; color: #FE1175FF;margin-bottom: auto;margin-top: auto;padding-top: 23px;"></i></a>
+                                                                  style="font-size: 27px; color: #FE1175FF;margin-bottom: auto;margin-top: auto;padding-top: 23px;"></i></a>
                     </div>
                     <div class="border-button" id="signInOut">
                         <a id="modal_trigger" href="#modal" class="sign-in-up">Sign In/Up</a>
@@ -178,7 +178,6 @@
                     <input id="send_updates" type="checkbox"/>
                     <label for="send_updates">Send me occasional email updates</label>
                 </div>
-
                 <div class="action_btns">
                     <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a>
                     </div>
@@ -392,8 +391,18 @@
 
 
 <section class="popular-categories">
-    <div class="container-fluid" id="productImg">
-        <!--       Ajax-->
+    <div class="container-fluid">
+        <div className="col-lg-6">
+            <div className="section-heading">
+                <h6>Bộ sưu tập</h6>
+                <h4>SẢN PHẨM <em>NÈ</em></h4>
+            </div>
+        </div>
+        <div className="row">
+            <div className="col-lg-3 col-sm-6" id="productImg">
+                <!--       Ajax-->
+            </div>
+        </div>
     </div>
 </section>
 
@@ -484,8 +493,15 @@
 <script src="assets/js/tabs.js"></script>
 <script src="assets/js/popup.js"></script>
 <script src="assets/js/custom.js"></script>
-<!--  <script src="src/body.js"></script>-->
+<script src="src/body.js"></script>
 <script src="ajaxJs/bodyUser.js"></script>
-<script src="ajaxJs/login-register.js"></script>
+<!--<script src="ajaxJs/login-register.js"></script>-->
+<!--<script>-->
+<!--    window.addEventListener("DOMContentLoaded", (event) => {-->
+<!--        console.log("DOM fully loaded and parsed");-->
+<!--        loadBody()-->
+<!--    });-->
+
+<!--</script>-->
 </body>
 </html>

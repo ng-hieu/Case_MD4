@@ -1,4 +1,4 @@
-$("#login-form").submit(function(e) {
+$("#login-form").submit(function (e) {
     e.preventDefault(); // ngăn chặn submit form
     let username = $("#usernameSignIn").val();
     let password = $("#passwordSignIn").val();
@@ -8,19 +8,21 @@ $("#login-form").submit(function(e) {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
         data: JSON.stringify({username: username, password: password}),
-        success: function(token) {
+        success: function (token) {
             localStorage.setItem('token', token)
         }
     });
     $('#signInOut').html(`<a href="#signOut" onclick="signOut()">Sign Out</a>`)
 });
 
-function signOut(){
+function signOut() {
     console.log('đã vào Sign Out')
     localStorage.removeItem('token')
     $('#signInOut').html(`<a id="modal_trigger" href="#modal" class="sign-in-up">Sign In/Up</a>`)
-    console.log('Out xong')}
-$("#register-form").submit(function(e) {
+    console.log('Out xong')
+}
+
+$("#register-form").submit(function (e) {
     console.log('đã vào')
     e.preventDefault(); // ngăn chặn submit form
     let username = $("#usernameSignUp").val();
@@ -31,9 +33,11 @@ $("#register-form").submit(function(e) {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
         data: JSON.stringify({username: username, password: password}),
-        success: function(messenger) {
-            console.log('Đã thêm xong '+ messenger)
+        success: function (messenger) {
+            console.log('Đã thêm xong ' + messenger)
             alert('Bạn hãy Log In lại')
         }
     });
 });
+
+
