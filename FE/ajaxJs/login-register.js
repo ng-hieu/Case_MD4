@@ -1,4 +1,5 @@
 $("#login-form").submit(function (e) {
+    console.log('đã vào login')
     e.preventDefault(); // ngăn chặn submit form
     let username = $("#usernameSignIn").val();
     let password = $("#passwordSignIn").val();
@@ -13,7 +14,7 @@ $("#login-form").submit(function (e) {
             document.querySelector("#sign-in-up").style.visibility = 'hidden';
         }
     });
-    $('#signInOut').html(`<a href="#signOut" onclick="signOut()">Sign Out</a>`)
+    bodyAfLogin()
 });
 
 function signOut() {
@@ -40,30 +41,6 @@ $("#register-form").submit(function (e) {
         }
     });
 });
-function requireLogin(req, res, next) {
-    if (req.session && req.session.userId) {
-        return next();
-    } else {
-        return res.redirect('/login');
-    }
-}
-function requireAdmin(req, res, next) {
-    if (req.session && req.session.isAdmin) {
-        return next();
-    } else {
-        return res.status(403).send('You are not authorized to access this page');
-    }
-}
-
-function  checkLogin(req, res, next) {
-    let token = localStorage.getItem('token');
-    console.log(token)
-    if(token) {
-        document.querySelector("sign-in-up").style.display = 'none';
-    }
-}
-
-checkLogin()
 
 
 

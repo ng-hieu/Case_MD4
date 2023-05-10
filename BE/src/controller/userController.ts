@@ -31,6 +31,7 @@ class UserController {
         }catch (err){
             console.log("err in register",err)
             res.status(500).json(err.message)
+
         }
     }
     login = async(req:Request,res:Response)=>{
