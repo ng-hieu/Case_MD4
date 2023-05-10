@@ -7,7 +7,7 @@ import { User } from './User';
 export class Cart {
     @PrimaryGeneratedColumn()
     idCart: number;
-    @Column()
+    @Column({default: "Buying"})
     status: string;
 
     @Column()
