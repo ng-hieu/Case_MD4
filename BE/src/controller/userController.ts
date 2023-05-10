@@ -35,6 +35,7 @@ class UserController {
     }
     login = async(req:Request,res:Response)=>{
         try{
+            console.log(123)
             let response = await  this.userService.checkUser(req.body)
             console.log(response)
             res.status(200).json(response)
