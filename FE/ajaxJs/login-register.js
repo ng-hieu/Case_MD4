@@ -1,4 +1,5 @@
 $("#login-form").submit(function (e) {
+    console.log('đã vào login')
     e.preventDefault(); // ngăn chặn submit form
     let username = $("#usernameSignIn").val();
     let password = $("#passwordSignIn").val();
@@ -12,7 +13,7 @@ $("#login-form").submit(function (e) {
             localStorage.setItem('token', token)
         }
     });
-    $('#signInOut').html(`<a href="#signOut" onclick="signOut()">Sign Out</a>`)
+    bodyAfLogin()
 });
 
 function signOut() {
