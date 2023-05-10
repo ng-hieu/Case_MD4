@@ -13,7 +13,7 @@ class UserService {
 
     getAllUsers = async () => {
         let sql = `SELECT *
-                   FROM user
+                   FROM User
                    WHERE role = 'user'`
         let user = await this.userRepository.query(sql)
         return user
@@ -30,10 +30,24 @@ class UserService {
         console.log(userFind)
         return userFind
     }
+
+    checkpassword = async (myPlaintextPassword, username) => {
+        let user = await this.userRepository.findOneBy({username: username})
+        let hash = user.password
+        console.log("pass " + myPlaintextPassword + "hash " + hash)
+        // let booleanCheck = await bcrypt.compare(myPlaintextPassword, hash);
+        let booleanCheck = await bcrypt.compare(myPlaintextPassword, hash);
+        return booleanCheck;
+    }
     checkUser = async (user) => {
+        console.log(user)
         let userCheck = await this.userRepository.findOneBy({username: user.username})
+        let passwordCheck = await this.checkpassword(user.password, user.username)
+        console.log("Test " + passwordCheck)
         if (!userCheck) {
             return 'user not found'
+        } else if (!passwordCheck) {
+            return 'Password is not right'
         } else {
             let payload = {
                 idUser: userCheck.idUser,
