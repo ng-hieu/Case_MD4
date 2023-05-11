@@ -42,6 +42,7 @@ class CartController {
         try {
             let cart = req.body
             await this.cartService.add(cart);
+            console.log(cart)
             res.status(200).json("Thêm cart thành công")
         } catch (err) {
             res.status(500).json(err.message)

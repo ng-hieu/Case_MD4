@@ -6,9 +6,11 @@ import {Cart} from "../model/cart";
 
 class CartService {
     private cartRepository
+    private productRepository
 
     constructor() {
         this.cartRepository = AppDataSource.getRepository(Cart)
+        this.productRepository = AppDataSource.getRepository(Product)
     }
 
     findAllCart = async () => {
@@ -20,8 +22,11 @@ class CartService {
         return carts
     }
     findAllCartByUserId = async (idUser) => {
+        // let sql = `SELECT *
+        //            FROM cart
+        //                     WHERE userIdUser = ${idUser}`
         let sql = `SELECT *
-                   FROM cart
+                   FROM cart JOIN product ON cart.productId = product.id
                             WHERE userIdUser = ${idUser}`
 
         let carts = await this.cartRepository.query(sql)
@@ -38,6 +43,7 @@ class CartService {
 
         add = async (cart) => {
             return this.cartRepository.save(cart);
+            console.log(cart)
         }
 
     //
