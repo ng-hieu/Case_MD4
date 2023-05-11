@@ -55,14 +55,16 @@ class ProductService {
         return await this.productRepository.delete({id: id})
     }
     searchProduct = async (name) => {
-        let sql = `SELECT *
+        console.log(name)
+        console.log('đã vào search service')
+        let products = await this.productRepository.query(`SELECT p.*, c.nameCategory
                    FROM product p
-                            JOIN category c ON p.category = c.idCategory
-                   WHERE name LIKE '%${name}%'`
-        let products = await this.productRepository.query(sql)
+                            JOIN category c ON p.categoryId = c.idCategory
+                   WHERE p.name LIKE '%${name}%'`)
         if (!products) {
             return null
         }
+        console.log('đã vào search service22222222')
         return products
     }
     priceRange = async (value) => {
