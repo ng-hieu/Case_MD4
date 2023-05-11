@@ -2,6 +2,7 @@ function formCreateProduct() {
     let html = `<input type="text" id="name" placeholder="name">
                     <input type="text" id="price" placeholder="price">
                     <input type="text" id="categoryId" placeholder="categoryId">
+                    <input type="hidden" name="image" id='image'>
                     <input type="file" id="fileButton" onchange="uploadImage(event)">
                     <button onclick="createNewProduct()">Add New Product</button>`
     $('#productImg').html(html);
@@ -12,7 +13,7 @@ function createNewProduct() {
     let name = $("#name").val()
     let price = $("#price").val()
     let categoryId = $("#categoryId").val()
-    let image = $("#fileButton").val()
+    let image = $("#image").val()
     let product = {
         id: id,
         name: name,
