@@ -10,17 +10,24 @@ $("#login-form").submit(function (e) {
         headers: {'Content-Type': 'application/json'},
         data: JSON.stringify({username: username, password: password}),
         success: function (token) {
-            localStorage.setItem('token', token)
+            localStorage.setItem('token', token);
+            let role = parseJwt(token).role;
+            // alert(`token parsed: ${JSON.stringify(parseJwt(token))}`)
+            localStorage.setItem('role', role);
+            if(role === 'user'){
+                bodyAfLogin();
+            } else if(role === 'admin'){
+                bodyAfLoginAdmin();
+            }
         }
     });
-    bodyAfLogin()
 });
 
 function signOut() {
     console.log('đã vào Sign Out')
     localStorage.removeItem('token')
-    $('#signInOut').html(`<a id="modal_trigger" href="#modal" class="sign-in-up">Sign In/Up</a>`)
-    console.log('Out xong')
+    $('#signInOut').html(`<a id="modal_trigger"  class="sign-in-up" data-bs-toggle="modal" data-bs-target="#modal">Sign In/Up</a>`)
+    afSignOut()
 }
 
 $("#register-form").submit(function (e) {
@@ -36,9 +43,16 @@ $("#register-form").submit(function (e) {
         data: JSON.stringify({username: username, password: password}),
         success: function (messenger) {
             console.log('Đã thêm xong ' + messenger)
-            alert('Bạn hãy Log In lại')
         }
     });
 });
 
+function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
 
+    return JSON.parse(jsonPayload);
+}
