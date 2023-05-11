@@ -72,13 +72,13 @@ class ProductController{
         }
     }
     searchProducts = async (req:Request,res:Response)=>{
+        console.log("ok da vao")
         try{
             let products = await productService.searchProduct(req.query.name)
-            let categories = await categoryService.getAllCategory()
-            let data = [products,categories]
-            res.status(200).json(data)
-
+            res.status(200).json(products)
+            console.log('đã tìm kiếm được', products)
         }catch (err){
+            console.log('lỗi tìm kiếm', err)
             res.status(500).json(err.message)
         }
     }
