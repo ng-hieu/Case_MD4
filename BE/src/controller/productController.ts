@@ -13,16 +13,14 @@ class ProductController{
         this.userService = userService
     }
     getAllProducts= async (req: Request, res: Response)=>{
-        console.log("get all product")
         try{
             let products = await this.productService.getAllProductsFromDatabase();
             let categories = await this.categoryService.getAllCategory();
             let data = [products,categories]
-            console.log("data get all products:", data)
             res.status(200).json(data);
 
         }catch(err){
-            console.log("error happen in get all")
+            console.log("error happen in get all", err)
             res.status(500).json(err.message);
         }
     }
@@ -44,6 +42,24 @@ class ProductController{
             });
         }catch (err){
             res.status(500).json(err.message)
+        }
+    }
+    formUpdateProduct = async (req:Request,res:Response)=>{
+        try{
+            console.log(456456)
+            let id = req.params.id;
+            let editProduct = await this.productService.showProductUpdate(id)
+            let data = {
+                Message: "form update product success",
+                data: editProduct,
+                success: true
+            }
+            console.log("data to response:", data)
+            res.status(200).json(data);
+        }catch (err){
+            console.log(err.message)
+            res.status(500).json({message: err.message,
+            success: false})
         }
     }
     deleteProduct = async (req:Request,res:Response)=>{
