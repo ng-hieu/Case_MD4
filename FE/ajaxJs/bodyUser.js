@@ -34,7 +34,7 @@ function bodyAfLogin(){
         url: `http://localhost:3000/products/`,
         headers: {
             'Content-Type':  'application/json',
-            'Authorization':  'Bearer ' + localStorage.getItem('token')
+            'Authorization':  'Bearer ' + localStorage.getItem('token') 
         },
         success: function (data) {
             let html = '';

@@ -24,7 +24,6 @@ class UserController {
                 res.status(200).json("đã có tk")
             } else {
                 let newUser = await this.userService.registerUser(user)
-                console.log("new user: ", newUser)
                 res.status(200).json("tạo thành công")
             }
 
