@@ -37,21 +37,30 @@ function createNewProduct() {
 }
 
 function formEditProduct(id) {
+    // alert(id);
+    // alert(`http://localhost:3000/products/${id}`)
+    // alert(localStorage.getItem('token'))
     $.ajax({
         type: "GET",
         url: `http://localhost:3000/products/${id}`,
-        Headers: {
-            'Content-Type': 'application/json'
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
         },
-        success: (product) => {
+        success: (data) => {
+            let product = data.data
             let html = `
             <input type="text" id="name" placeholder="name" value=${product.name}>
             <input type="text" id="price" placeholder="price" value=${product.price}>
-            <input type="text" id="quantity" placeholder="quantity" value=${product.quantity}>
-            <input type="text" id="img" placeholder="img" value=${product.img}>
-            <input type="text" id="category" placeholder="category" value=${product.category.id}>
+            <input type="text" id="img" placeholder="img" value=${product.image}>
+            <input type="file" id="fileButton" onchange="uploadImage(event)">
+            <input type="text" id="category" placeholder="category" value=${product.categoryId.idCategory}>
             <button onclick="update(${product.id})">update</button>`
             $('#productImg').html(html);
+            scroll(300,1000)
+        },
+        error: function (err) {
+            console.log("Bị lỗi khi đang sửa sản phẩm: ", err)
         }
     })
 }
@@ -59,31 +68,32 @@ function formEditProduct(id) {
 function update(id) {
     let name = $('#name').val()
     let price = $('#price').val()
-    let quantity = $('#quantity').val()
-    let img = $('#img').val()
-    let category = $('#category').val()
+    let image = $('#img').val()
+    let categoryId = $('#category').val()
 
     let product = {
         name: name,
         price: price,
-        quantity: quantity,
-        image: img,
-        category: category
+        image: image,
+        categoryId: categoryId
     }
     $.ajax({
-        type: "put",
+        type: "PUT",
         url: `http://localhost:3000/products/${id}`,
         headers: {
-            "Content-Type": "application/json"
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
         },
         data: JSON.stringify(product),
         success: (message) => {
-            getList()
+            alert('sửa thành công', message)
+            bodyAfLoginAdmin()
         }
     })
 }
 
 function deleteProduct(id) {
+
     $.ajax({
         type: 'DELETE',
         url: `http://localhost:3000/products/${id}`,
@@ -92,10 +102,11 @@ function deleteProduct(id) {
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         },
         success: (messenger) => {
-            console.log('xóa thành công', messenger)
+            alert('xóa thành công', messenger)
+            bodyAfLoginAdmin()
         },
         error: function (err) {
-            console.log("Bị lỗi khi đang xóa sản phẩm: ", err)
+            alert("Bị lỗi khi đang xóa sản phẩm: ", err)
         }
     })
 }

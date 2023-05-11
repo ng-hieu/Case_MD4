@@ -105,8 +105,8 @@ function bodyAfLoginAdmin(){
             console.log("Bị lỗi khi đang hiển thị sản phẩm Admin: ", err)
         }
     })
-    $('#plus').html(`<a href="#createProduct" onclick="formCreateProduct()" ><i class="fas fa-plus" style="font-size: 27px; color: #FE1175FF;margin-bottom: auto;margin-top: auto;padding-top: 23px;"></i></a>`)
-    $('#signInOut').html(`<a href="#signOut" onclick="signOut()">Sign Out</a>`)
+    $('#plus').html(`<a href="#" onclick="formCreateProduct()" ><i class="fas fa-plus" style="font-size: 27px; color: #FE1175FF;margin-bottom: auto;margin-top: auto;padding-top: 23px;"></i></a>`)
+    $('#signInOut').html(`<a href="#" onclick="signOut()">Sign Out</a>`)
 }
 
 function afSignOut(){
