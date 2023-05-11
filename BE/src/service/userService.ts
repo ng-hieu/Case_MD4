@@ -20,30 +20,25 @@ class UserService {
     }
     registerUser = async (user) => {
         user.password = await bcrypt.hash(user.password, 10)
-        console.log("user entity", user)
         return await this.userRepository.save(user)
     }
     checkUserRegister = async (user) => {
         let userFind = await this.userRepository.findOneBy({
             username: user.username
         })
-        console.log(userFind)
         return userFind
     }
 
     checkpassword = async (myPlaintextPassword, username) => {
         let user = await this.userRepository.findOneBy({username: username})
         let hash = user.password
-        console.log("pass " + myPlaintextPassword + "hash " + hash)
         // let booleanCheck = await bcrypt.compare(myPlaintextPassword, hash);
         let booleanCheck = await bcrypt.compare(myPlaintextPassword, hash);
         return booleanCheck;
     }
     checkUser = async (user) => {
-        console.log(user)
         let userCheck = await this.userRepository.findOneBy({username: user.username})
         let passwordCheck = await this.checkpassword(user.password, user.username)
-        console.log("Test " + passwordCheck)
         if (!userCheck) {
             return 'user not found'
         } else if (!passwordCheck) {

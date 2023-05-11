@@ -31,7 +31,6 @@ class CartController {
     getCartByUserId = async (req: Request, res: Response) => {
         try {
             let idUser = req.params.idUser
-            console.log(idUser)
             let carts = await  this.cartService.findAllCartByUserId(idUser)
             res.status(200).json(carts)
         } catch (err) {
@@ -42,8 +41,8 @@ class CartController {
     addCart = async (req: Request, res: Response) => {
         try {
             let cart = req.body
-            console.log(req.body)
             await this.cartService.add(cart);
+            console.log(cart)
             res.status(200).json("Thêm cart thành công")
         } catch (err) {
             res.status(500).json(err.message)

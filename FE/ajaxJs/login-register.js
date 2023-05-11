@@ -12,7 +12,9 @@ $("#login-form").submit(function (e) {
         success: function (token) {
             localStorage.setItem('token', token);
             let role = parseJwt(token).role;
+            let idUser = parseJwt(token).idUser; // Cương thêm
             // alert(`token parsed: ${JSON.stringify(parseJwt(token))}`)
+            localStorage.setItem('idUser', idUser) // Cương thêm
             localStorage.setItem('role', role);
             if(role === 'user'){
                 bodyAfLogin();
