@@ -15,19 +15,30 @@ class ProductService {
         let sql = `SELECT *
                    FROM product
                     JOIN category 
-                        ON product.categoryIdIdCategory = category.idCategory`
+                        ON product.categoryId = category.idCategory`
 
         return await this.productRepository.query(sql)
     }
     saveProduct = async (Product) => {
         return this.productRepository.save(Product)
     }
-    private updateProduct = async (id, newProduct) => {
+     updateProduct = async (id, newProduct) => {
         let product = await this.productRepository.findOneBy({id: id})
         if (!product) {
             return null;
         }
         return await this.productRepository.update({id: id}, newProduct)
+    }
+    showProductUpdate = async (id) => {
+        console.log(id, 123123)
+        let product = await this.productRepository.find(
+            {relations: ['categoryId'],
+            where: {id}}
+            );
+        console.log(product)
+        // console.log(typeof product)
+        // console.log(product)
+        return product[0];
     }
     findById = async (id) => {
         let product = await this.productRepository.findOneBy({id: id})
@@ -36,7 +47,7 @@ class ProductService {
         }
         return product
     }
-    private deleteProduct = async (id) => {
+    deleteProduct = async (id) => {
         let product = await this.productRepository.findOneBy({id: id})
         if (!product) {
             return null;

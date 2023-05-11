@@ -1,5 +1,6 @@
 import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
 import {Category} from "./category";
+import {JoinColumn} from "typeorm";
 
 @Entity()
 export class Product {
@@ -12,5 +13,6 @@ export class Product {
     @Column({type: "text"})
     image: string;
     @ManyToOne(()=> Category, (category: Category)=> category.products)
+    @JoinColumn({name: 'categoryId',referencedColumnName: 'idCategory'})
     categoryId: number;
 }

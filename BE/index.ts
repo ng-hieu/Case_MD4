@@ -12,6 +12,11 @@ AppDataSource.initialize().then(() => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
+app.use("", (req, res, next) => {
+    console.log(req.url);
+    console.log(req.params)
+    next()
+})
 app.use('', router)
 app.listen(3000, () => {
     console.log('Server is running')
